@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 import window
+from controllers import users_controller
 
 
 def show(users):
@@ -17,7 +18,12 @@ def show(users):
         Label(root, text=f'{user.is_admin}').grid(row=row+1, column=2)
         Label(root, text=f'{user.is_blocked}').grid(row=row+1, column=3)
         Label(root, text=f'{user.is_pass_restricted}').grid(row=row+1, column=4)
-        # if user.is_blocked : Button(root, text="Unblock",
-        #                             command=lambda: unblockuser_handler(user.username)).grid(row=row+1, column=5)
-        # else: Button(root, text="Block",
-        #              command=lambda: blockuser_handler(user.username)).grid(row=row+1, column=5)
+
+        Button(
+            root,
+            text="Unblock" if user.is_blocked else 'Block',
+            command=lambda user=(user.username, user.is_blocked): users_controller.set_block_status_handler(
+                user[0],
+                not user[1]
+            )
+        ).grid(row=row + 1, column=5)

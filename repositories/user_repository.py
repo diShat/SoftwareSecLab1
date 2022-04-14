@@ -63,3 +63,13 @@ def change_password(username, newpass):
     session.add(user)
     session.commit()
     session.close()
+
+
+def set_block_status(username, is_blocked_status):
+    user = get_user(username)
+    session = Session()
+    user.is_blocked = is_blocked_status
+
+    session.add(user)
+    session.commit()
+    session.close()

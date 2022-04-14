@@ -15,7 +15,7 @@ def startup():
 def show(username, is_admin):
     root = window.get_clean_root()
     login_label = Label(root, text=f"Login: {username}")
-    settings_btn = Button(root, text="Settings", command=lambda: app_controller.settings(username))
+    settings_btn = Button(root, text="Settings", command=lambda: app_controller.settings())
     userslist_btn = Button(root, text='Show Users list', command=lambda: users_controller.list())
     logout_btn = Button(root, text='Log out', command=lambda: app_controller.login())
     login_label.grid(row=0, column=0)

@@ -73,3 +73,13 @@ def set_block_status(username, is_blocked_status):
     session.add(user)
     session.commit()
     session.close()
+
+
+def set_pass_restriction_status(username, is_pass_restricted_status):
+    user = get_user(username)
+    session = Session()
+    user.is_pass_restricted = is_pass_restricted_status
+
+    session.add(user)
+    session.commit()
+    session.close()

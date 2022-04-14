@@ -22,7 +22,6 @@ def show(username, message='', error=''):
                             command=lambda: app_controller.changepass_handler(oldpass_entry.get(),
                                                                               newpass_entry.get(),
                                                                               newpassconf_entry.get()))
-    backtomain_btn = Button(root, text="Back", command=lambda: app_controller.main())
 
     login_label.grid(row=1, column=0)
     oldpass_label.grid(row=2, column=0)
@@ -32,4 +31,6 @@ def show(username, message='', error=''):
     newpassconf_label.grid(row=4, column=0)
     newpassconf_entry.grid(row=4, column=1)
     changepass_btn.grid(row=5, column=0, columnspan=2)
+
+    backtomain_btn = Button(root, text="Back", command=lambda: app_controller.main())
     backtomain_btn.grid(row=6, column=0, columnspan=2)

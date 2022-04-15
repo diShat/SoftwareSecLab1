@@ -15,6 +15,7 @@ class User(Base):
     username = Column("username", String, unique=True)
     password = Column("password", String)
     is_admin = Column("is_admin", Boolean)
+    login_attempt = Column('login_attempt', Integer)
     is_blocked = Column("is_blocked", Boolean)
     is_pass_restricted = Column("is_pass_restricted", Boolean)
 
@@ -25,18 +26,21 @@ Base.metadata.create_all(bind=engine)
 def get_user(username):
     session = Session()
     user = session.query(User).filter(User.username == username).first()
-
     session.close()
     return user
 
 
 def create_user(username, password, is_admin=False, is_blocked=False, is_pass_restricted=False):
+    if username == '':
+        raise Exception('Empty username')
+
     session = Session()
 
     user = User()
     user.username = username
     user.password = password
     user.is_admin = is_admin
+    user.login_attempt = 0
     user.is_blocked = is_blocked
     user.is_pass_restricted = is_pass_restricted
 
@@ -83,3 +87,28 @@ def set_pass_restriction_status(username, is_pass_restricted_status):
     session.add(user)
     session.commit()
     session.close()
+
+
+def add_failed_login_attempt(username):
+    user = get_user(username)
+
+    session = Session()
+
+    user.login_attempt += 1
+
+    session.add(user)
+    session.commit()
+    session.close()
+
+
+def reset_login_attempt(username):
+    user = get_user(username)
+
+    session = Session()
+
+    user.login_attempt = 0
+
+    session.add(user)
+    session.commit()
+    session.close()
+

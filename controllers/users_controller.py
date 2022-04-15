@@ -22,5 +22,9 @@ def add_user():
 
 
 def add_user_handler(username):
-    user_repository.create_user(username, '')
+    try:
+        user_repository.create_user(username, '')
+    except Exception as e:
+        newuser_form_view.show('', e)
+        return
     list()

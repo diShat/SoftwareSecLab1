@@ -22,7 +22,11 @@ def main():
 
 
 def login_handler(username, password):
-    user_service.validate_login(username, password)
+    try:
+        user_service.validate_login(username, password)
+    except Exception as e:
+        login_view.show('', e)
+        return
     user = user_repository.get_user(username)
     session_service.create_session(user.username, user.is_admin)
     main()

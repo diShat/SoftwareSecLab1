@@ -2,6 +2,7 @@ from tkinter import *
 
 global root
 root = Tk()
+root.title("SoftwareSecurity-Lab1")
 root.geometry('500x250')
 
 

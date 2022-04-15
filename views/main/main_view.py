@@ -6,7 +6,10 @@ import window
 def startup():
     root = window.root
     Label(root, text=f"App").grid(row=0, column=0)
-    Button(root, text="Log in", command=lambda: app_controller.login()).grid(row=1, column=0)
+    Button(root,
+           text="Log in",
+           command=lambda: app_controller.login()
+           ).grid(row=1, column=0)
     root.mainloop()
 
 

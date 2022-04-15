@@ -1,4 +1,4 @@
-from views.main import main_view, settings_view
+from views.main import main_view, settings_view, about_view
 from views.login import login_view
 from services import user_service, session_service
 from repositories import user_repository
@@ -48,3 +48,6 @@ def changepass_handler(oldpass, newpass, newpassconf):
         return
     login()
 
+
+def about():
+    about_view.show()

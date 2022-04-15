@@ -2,7 +2,7 @@ from tkinter import *
 
 global root
 root = Tk()
-root.geometry('800x600')
+root.geometry('500x250')
 
 
 def get_clean_root():

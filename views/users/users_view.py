@@ -8,8 +8,8 @@ def show(users):
     root = window.get_clean_root()
 
     # creating management menu
-    backtomain_btn = Button(root, text="Back", command=lambda: app_controller.main())
-    backtomain_btn.grid(row=0, column=0)
+    Button(root, text="Back", command=lambda: app_controller.main()).grid(row=0, column=0)
+    Button(root, text="Add User", command=lambda: users_controller.add_user()).grid(row=0, column=1)
 
     # drawing a users-table
     headers = ['Id', 'Username', 'Admin', 'Blocked', 'Pass Restricted']

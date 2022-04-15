@@ -3,7 +3,7 @@ from tkinter import *
 global root
 root = Tk()
 root.title("SoftwareSecurity-Lab1")
-root.geometry('500x250')
+root.minsize(300, 30)
 
 
 def get_clean_root():

@@ -7,12 +7,9 @@ from controllers import users_controller
 def show(message='', error=''):
     root = window.get_clean_root()
 
-    message_label = Label(root, text='')
-    if message != '':
-        message_label = Label(root, text=f'{message}', fg='green')
-    elif error != '':
-        message_label = Label(root, text=f'{error}', fg='red')
-    message_label.grid(row=0, column=0)
+    if message != '': Label(root, text=f'{message}', fg='green').grid(row=0, column=0)
+    elif error != '': Label(root, text=f'{error}', fg='red').grid(row=0, column=0)
+    else: Label(root, text='').grid(row=0, column=0)
 
     Label(root, text="Add new user").grid(row=1, column=0, columnspan=2, padx=10, pady=10)
     Label(root, text='New user username:').grid(row=2, column=0)

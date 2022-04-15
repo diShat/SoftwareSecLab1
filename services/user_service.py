@@ -1,4 +1,5 @@
 from repositories import user_repository
+import re
 
 
 def validate_login(username, password):
@@ -31,4 +32,14 @@ def is_admin(username):
 def change_password(username, oldpass, newpass):
     if not compare_password(username, oldpass):
         raise Exception('Invalid old password')
+    user = user_repository.get_user(username)
+    if user.is_pass_restricted and not regex_password(newpass):
+        raise Exception(
+            """Your new password format is restricted:\n
+            must contain a letter(A-Z,a-z), an arithmetic sign(*/+=) and a punktuation mark(,.:;?!-)""")
     user_repository.change_password(username, newpass)
+
+
+def regex_password(password):
+    pat = re.compile("^(?=.*?[A-Za-z])(?=.*?[,.:;?!-])(?=.*?[*/+=])")
+    return re.fullmatch(pat, password)

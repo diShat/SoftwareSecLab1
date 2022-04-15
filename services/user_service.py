@@ -41,5 +41,5 @@ def change_password(username, oldpass, newpass):
 
 
 def regex_password(password):
-    pat = re.compile("^(?=.*?[A-Za-z])(?=.*?[,.:;?!-])(?=.*?[*/+=])")
+    pat = re.compile("^(?=.*?[A-Za-z])(?=.*?[,.:;?!-])(?=.*?[*\/+=])")
     return re.fullmatch(pat, password)
